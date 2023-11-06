@@ -3,7 +3,6 @@ var volumeSpan = document.getElementById('volume');
 var slider = document.getElementById('slider');
 
 window.addEventListener("load", function() {
-    // Set the autoplay and loop attributes to false
     video.autoplay = false;
     video.loop = false;
 
@@ -19,7 +18,6 @@ document.querySelector("#pause").addEventListener("click", function() {
 });
 
 document.querySelector("#play").addEventListener("click", function() {
-    // Check if the 'video' variable has been defined before playing
     if (video) {
         video.play();
     } else {
@@ -27,7 +25,6 @@ document.querySelector("#play").addEventListener("click", function() {
     }
 });
 
-// Update volume information
 slider.addEventListener("input", function() {
     video.volume = this.value / 100;
     volumeSpan.textContent = this.value + "%";
