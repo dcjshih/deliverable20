@@ -25,6 +25,44 @@ document.querySelector("#play").addEventListener("click", function() {
     }
 });
 
+// Slow the current video speed by 10% each time the button is clicked and log the new speed to the console.
+document.querySelector("#slower").addEventListener("click", function() {
+    video.playbackRate -= 0.1
+    console.log("Speed: " + video.playbackRate);
+});
+
+document.querySelector("#faster").addEventListener("click", function() {
+    video.playbackRate += 0.1;
+    console.log("Speed: " + video.playbackRate);
+});
+
+document.querySelector("#skip").addEventListener("click", function() {
+    video.currentTime += 10;
+    if (video.ended) {
+        video.currentTime = 0;
+    }
+    console.log("Position: " + video.currentTime);
+
+
+});
+document.querySelector("#mute").addEventListener("click", function() {
+    if (document.querySelector("#mute").textContent === "Mute") {
+        document.querySelector("#mute").textContent = "Unmute";
+        video.muted = true;
+    } else {
+        document.querySelector("#mute").textContent === "Mute";
+        video.muted = false;
+    }
+});
+
+document.querySelector("#vintage").addEventListener("click", function() {
+    document.querySelector("#player1").className = "oldSchool";
+});
+
+document.querySelector("#orig").addEventListener("click", function() {
+    document.querySelector("#player1").className = "video";
+});
+
 slider.addEventListener("input", function() {
     video.volume = this.value / 100;
     volumeSpan.textContent = this.value + "%";
