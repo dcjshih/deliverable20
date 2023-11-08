@@ -18,21 +18,19 @@ document.querySelector("#pause").addEventListener("click", function() {
 });
 
 document.querySelector("#play").addEventListener("click", function() {
-    if (video) {
-        video.play();
-    } else {
-        console.error("Video element is not defined");
-    }
+    video.play();
+    document.querySelector("#volume").textContent = Math.round(video.volume * 100) + "%";
+
 });
 
 // Slow the current video speed by 10% each time the button is clicked and log the new speed to the console.
 document.querySelector("#slower").addEventListener("click", function() {
-    video.playbackRate -= 0.1
+    video.playbackRate *= 0.9
     console.log("Speed: " + video.playbackRate);
 });
 
 document.querySelector("#faster").addEventListener("click", function() {
-    video.playbackRate += 0.1;
+    video.playbackRate *= 1.1;
     console.log("Speed: " + video.playbackRate);
 });
 
@@ -46,24 +44,26 @@ document.querySelector("#skip").addEventListener("click", function() {
 
 });
 document.querySelector("#mute").addEventListener("click", function() {
-    if (document.querySelector("#mute").textContent === "Mute") {
+    if (video.muted) {
         document.querySelector("#mute").textContent = "Unmute";
-        video.muted = true;
+        video.muted = false;
     } else {
         document.querySelector("#mute").textContent === "Mute";
-        video.muted = false;
+        console.log(video.muted)
     }
 });
 
 document.querySelector("#vintage").addEventListener("click", function() {
-    document.querySelector("#player1").className = "oldSchool";
+    // document.querySelector("#player1").className = "oldSchool";
+    video.classList.add("oldSchool");
 });
 
 document.querySelector("#orig").addEventListener("click", function() {
-    document.querySelector("#player1").className = "video";
+    video.classList.remove("oldSchool");
 });
 
 slider.addEventListener("input", function() {
     video.volume = this.value / 100;
-    volumeSpan.textContent = this.value + "%";
+    document.querySelector("#volume").textContent = Math.round(video.volume * 100) + "%";
+
 });
