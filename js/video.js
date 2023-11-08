@@ -49,7 +49,7 @@ document.querySelector("#mute").addEventListener("click", function() {
         video.muted = false;
     } else {
         document.querySelector("#mute").textContent === "Mute";
-        console.log(video.muted)
+        video.muted = true;
     }
 });
 
